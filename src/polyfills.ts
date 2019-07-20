@@ -28,6 +28,10 @@
  */
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
+
+// import "core-js/es6/reflect";
+// import "core-js/es7/reflect";
+
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
  * user can disable parts of macroTask/DomEvents patch by setting following flags
@@ -61,3 +65,5 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+import "phaser/dist/phaser";
