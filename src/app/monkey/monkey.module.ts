@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MonkeyRoutingModule } from './monkey-routing.module';
-import { MonkeyComponent } from './monkey/monkey.component';
+import { MonkeyGame } from './monkey.game';
 import {PhaserModule} from 'phaser-component-library';
 
 @NgModule({
-  declarations: [MonkeyComponent],
+  declarations: [MonkeyGame],
   imports: [
     CommonModule,
     MonkeyRoutingModule,
