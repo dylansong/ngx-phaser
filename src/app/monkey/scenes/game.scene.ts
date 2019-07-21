@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BaseArcadeActor} from '../actors/base-arcade-actor';
+import {fromEvent} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,9 @@ export class GameScene extends Phaser.Scene {
 
     this.physics.add.collider( this.apple , this.ground);
     this.input.on('pointerdown', this.jumpApple.bind(this));
+    this.apple.setInteractive();
+    // fromEvent(this.apple, 'pointerdown').subscribe(() => console.log('pointer'));
+    // this.apple.addListener('pointerdown', () => console.log('hello'));
   }
 
   jumpApple(){
