@@ -4,9 +4,10 @@ class ArcadeActorConfig {
   public key: string;
   public x: number;
   public y: number;
-  public gravityX?: number;
-  public gravityY?: number;
-  public immovable?;
+  public gravity?: { x: number, y: number };
+  public bounce?: { x: number, y: number };
+  public velocity?: { x: number, y: number };
+  public immovable?: boolean;
 }
 
 export class BaseArcadeActor extends Phaser.Physics.Arcade.Sprite {
@@ -17,14 +18,17 @@ export class BaseArcadeActor extends Phaser.Physics.Arcade.Sprite {
       this.initial();
   }
   public initial(): void {
-    if (!this.config.immovable) {
-      this.setGravityY(this.config.gravityY);
+    if (this.config.gravity) {
+      this.setGravity(this.config.gravity.x, this.config.gravity.y);
     }
-    if (this.config.gravityX) {
-      this.setGravityX(this.config.gravityX);
+    if (this.config.bounce) {
+      this.setBounce(this.config.bounce.x, this.config.bounce.y);
     }
     if (this.config.immovable) {
       this.setImmovable();
+    }
+    if (this.config.velocity) {
+      this.setVelocity(this.config.velocity.x, this.config.velocity.y);
     }
   }
 }

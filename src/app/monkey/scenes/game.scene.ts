@@ -21,15 +21,27 @@ export class GameScene extends Phaser.Scene {
 
   create(){
 
+    this.add.text( 200, 200, 'Hello' , { fontFamily: 'Hanalei', fontSize: 128 });
 
+    this.apple =  new BaseArcadeActor({
+      scene: this,
+      key: 'apple',
+      gravity: {x: 0, y: 100},
+      x: 100,
+      y: 100,
+      bounce: {x: 0, y: 0.5},
+      velocity: {x: 10, y: 0}
+    });
 
-    this.apple =  new BaseArcadeActor({ scene: this, key: 'apple', gravityY: 100, x: 100, y: 100});
-
-    this.ground = new BaseArcadeActor({ scene: this, key: 'ground', x: 100, y: 400, immovable: true });
+    this.ground = new BaseArcadeActor({scene: this, key: 'ground', x: 100, y: 400, immovable: true});
 
 
     this.physics.add.collider( this.apple , this.ground);
+    this.input.on('pointerdown', this.jumpApple.bind(this));
+  }
 
+  jumpApple(){
+    this.apple.setVelocity( 0, -200);
   }
 
 }
