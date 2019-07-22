@@ -7,8 +7,9 @@ import * as WebFont from 'webfontloader';
   template: '<phaser-component (gameReady)="onGameReady($event)" [gameConfig]="gameConfig" [Phaser]="phaser"></phaser-component>',
   styles: ['']
 })
+// tslint:disable-next-line:component-class-suffix
 export class MonkeyGame implements OnInit {
-  public gameConfig : Phaser.Types.Core.GameConfig = {
+  public gameConfig: Phaser.Types.Core.GameConfig = {
     width: window.innerWidth,
     height: window.innerHeight,
     title: 'Monkey Game',

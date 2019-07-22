@@ -13,19 +13,21 @@ export class GameScene extends Phaser.Scene {
   line: Phaser.GameObjects.Graphics;
   rec: Phaser.GameObjects.Graphics;
   filledRec: Phaser.GameObjects.Graphics;
+  meow: Phaser.Sound.BaseSound;
   constructor() {
     super({ key : 'GameScene'});
   }
 
   preload(){
-    this.load.path = 'assets/physical/';
-    this.load.image('apple', 'apple.png');
-    this.load.image('ground', 'ground.png');
+    this.load.path = 'assets/';
+    this.load.image('apple', 'physical/apple.png');
+    this.load.image('ground', 'physical/ground.png');
+    this.load.audio('meow', ['sound/meow/meow.mp3' , 'sound/meow/meow.ogg']);
   }
 
   create(){
 
-    this.add.text( 200, 200, 'Hello' , { fontFamily: 'Hanalei', fontSize: 128 });
+    this.add.text(200, 200, 'Hello', {fontFamily: 'Droid Serif', fontSize: 28});
 
     this.apple =  new BaseArcadeActor({
       scene: this,
@@ -45,7 +47,13 @@ export class GameScene extends Phaser.Scene {
     this.apple.setInteractive();
     // fromEvent(this.apple, 'pointerdown').subscribe(() => console.log('pointer'));
     // this.apple.addListener('pointerdown', () => console.log('hello'));
-    this.apple.on('pointerdown' , () => console.log('on event'));
+    this.apple.on('pointerdown' , () => {
+      console.log('on event');
+      // this.meow.play();
+    });
+
+    //meow sound
+    this.meow = this.sound.add('meow');
 
     this.drawLine();
     this.drawRec();
