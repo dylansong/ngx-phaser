@@ -15,7 +15,7 @@ export class GameScene extends Phaser.Scene {
   filledRec: Phaser.GameObjects.Graphics;
   meow: Phaser.Sound.BaseSound;
 
-  appleGroup: Phaser.GameObjects.Group;
+  appleContainer: Phaser.GameObjects.Container;
   constructor() {
     super({ key : 'GameScene'});
   }
@@ -61,7 +61,7 @@ export class GameScene extends Phaser.Scene {
     // this.drawRec();
     // this.fillRec();
 
-    this.initialAppleGroup();
+    this.initialAppleContainer();
   }
 
   drawLine(){
@@ -86,8 +86,8 @@ export class GameScene extends Phaser.Scene {
     this.apple.setVelocity( 0, -200);
   }
 
-  private initialAppleGroup() {
-    this.appleGroup = this.add.group();
+  private initialAppleContainer() {
+    this.appleContainer = this.add.container(1050, 100);
     for (let i = 1; i <= 20; i++) {
       const xPos = Phaser.Math.Between(0, this.game.config.width as number);
       const yPos = Phaser.Math.Between(0, this.game.config.height as number);
@@ -100,7 +100,7 @@ export class GameScene extends Phaser.Scene {
         bounce: {x: 0, y: 0.5},
         velocity: {x: 10, y: 0}
       });
-      this.appleGroup.add(apple);
+      this.appleContainer.add(apple);
     }
   }
 }
