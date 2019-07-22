@@ -14,6 +14,8 @@ export class GameScene extends Phaser.Scene {
   rec: Phaser.GameObjects.Graphics;
   filledRec: Phaser.GameObjects.Graphics;
   meow: Phaser.Sound.BaseSound;
+
+  appleGroup: Phaser.GameObjects.Group;
   constructor() {
     super({ key : 'GameScene'});
   }
@@ -58,6 +60,8 @@ export class GameScene extends Phaser.Scene {
     // this.drawLine();
     // this.drawRec();
     // this.fillRec();
+
+    this.initialAppleGroup();
   }
 
   drawLine(){
@@ -82,4 +86,21 @@ export class GameScene extends Phaser.Scene {
     this.apple.setVelocity( 0, -200);
   }
 
+  private initialAppleGroup() {
+    this.appleGroup = this.add.group();
+    for (let i = 1; i <= 20; i++) {
+      const xPos = Phaser.Math.Between(0, this.game.config.width as number);
+      const yPos = Phaser.Math.Between(0, this.game.config.height as number);
+      const apple =  new BaseArcadeActor({
+        scene: this,
+        key: 'apple',
+        gravity: {x: 0, y: 100},
+        x: xPos,
+        y: yPos,
+        bounce: {x: 0, y: 0.5},
+        velocity: {x: 10, y: 0}
+      });
+      this.appleGroup.add(apple);
+    }
+  }
 }
