@@ -27,7 +27,7 @@ export class GameScene extends Phaser.Scene {
 
   create(){
 
-    this.add.text(200, 200, 'Hello', {fontFamily: 'Droid Serif', fontSize: 28});
+    this.add.text(200, 200, 'Please click the apple to play the meow sound!', {fontFamily: 'Droid Serif', fontSize: 28});
 
     this.apple =  new BaseArcadeActor({
       scene: this,
@@ -49,15 +49,15 @@ export class GameScene extends Phaser.Scene {
     // this.apple.addListener('pointerdown', () => console.log('hello'));
     this.apple.on('pointerdown' , () => {
       console.log('on event');
-      // this.meow.play();
+      this.meow.play();
     });
 
     //meow sound
     this.meow = this.sound.add('meow');
 
-    this.drawLine();
-    this.drawRec();
-    this.fillRec();
+    // this.drawLine();
+    // this.drawRec();
+    // this.fillRec();
   }
 
   drawLine(){
